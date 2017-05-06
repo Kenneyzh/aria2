@@ -1,4 +1,6 @@
 #!/bin/sh
+#2017/05/05 by kenney
+
 export KSROOT=/jffs/koolshare
 source $KSROOT/scripts/base.sh
 #eval `dbus export aria2`
