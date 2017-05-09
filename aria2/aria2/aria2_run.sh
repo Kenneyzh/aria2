@@ -19,7 +19,7 @@ echo ""
 # start aria2c
 creat_conf(){
 cat > $KSROOT/aria2/aria2.conf <<EOF
-`dbus list aria2 | grep -vw aria2_enable | grep -vw aria2_dir_str | grep -vw aria2_check | grep -vw aria2_check_time | grep -vw aria2_sleep | grep -vw aria2_update_enable| grep -vw aria2_update_sel | grep -vw aria2_version | grep -vw aria2_cpulimit_enable | grep -vw aria2_cpulimit_value| grep -vw aria2_version_web | grep -vw aria2_warning | grep -vw aria2_custom | grep -vw aria2_install_status|grep -vw aria2_restart |grep -vw aria2_dir| sed 's/aria2_//g' | sed 's/_/-/g'`
+`dbus list aria2 | grep -vw aria2_enable | grep -vw aria2_dir_str | grep -vw aria2_title | grep -vw aria2_check | grep -vw aria2_check_time | grep -vw aria2_sleep | grep -vw aria2_update_enable| grep -vw aria2_update_sel | grep -vw aria2_version | grep -vw aria2_cpulimit_enable | grep -vw aria2_cpulimit_value| grep -vw aria2_version_web | grep -vw aria2_warning | grep -vw aria2_custom | grep -vw aria2_install_status|grep -vw aria2_restart |grep -vw aria2_dir| sed 's/aria2_//g' | sed 's/_/-/g'`
 `dbus list aria2|grep -w aria2_dir|sed 's/aria2_//g'`
 EOF
 
@@ -28,9 +28,11 @@ cat >> $KSROOT/aria2/aria2.conf <<EOF
 
 EOF
 
-# if [ "$aria2_enable_rpc" = "false" ];then
-# sed -i '/rpc/d' /koolshare/aria2/aria2.conf
-# fi
+if [ "$aria2_enable_dht" == "1" ];then
+	sed -i 's/^enable-dht=.*/enable-dht=true/g' $KSROOT/aria2/aria2.conf
+else
+	sed -i 's/^enable-dht=.*/enable-dht=false/g' $KSROOT/aria2/aria2.conf
+fi
 }
 
 start_aria2(){
@@ -52,9 +54,9 @@ open_port(){
 	iptables -I INPUT -p tcp --dport $aria2_rpc_listen_port -j ACCEPT >/dev/null 2>&1
 	iptables -I INPUT -p tcp --dport 8088 -j ACCEPT >/dev/null 2>&1
 	iptables -I INPUT -p tcp --dport 6881:6889 -j ACCEPT >/dev/null 2>&1
-	iptables -I INPUT -p tcp --dport 51413 -j ACCEPT >/dev/null 2>&1
-	iptables -I INPUT -p tcp --dport 52413 -j ACCEPT >/dev/null 2>&1
-	iptables -I INPUT -p udp --dport 52413 -j ACCEPT >/dev/null 2>&1
+	iptables -I INPUT -p tcp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
+	iptables -I INPUT -p tcp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
+	iptables -I INPUT -p udp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
 	echo done
 }
 
@@ -64,9 +66,9 @@ close_port(){
 	iptables -D INPUT -p tcp --dport $aria2_rpc_listen_port -j ACCEPT >/dev/null 2>&1
 	iptables -D INPUT -p tcp --dport 8088 -j ACCEPT >/dev/null 2>&1
 	iptables -D INPUT -p tcp --dport 6881:6889 -j ACCEPT >/dev/null 2>&1
-	iptables -D INPUT -p tcp --dport 51413 -j ACCEPT >/dev/null 2>&1
-	iptables -D INPUT -p tcp --dport 52413 -j ACCEPT >/dev/null 2>&1
-	iptables -D INPUT -p udp --dport 52413 -j ACCEPT >/dev/null 2>&1
+	iptables -D INPUT -p tcp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
+	iptables -D INPUT -p tcp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
+	iptables -D INPUT -p udp --dport $aria2_listen_port -j ACCEPT >/dev/null 2>&1
 	echo done
 }
 
