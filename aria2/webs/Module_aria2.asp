@@ -66,7 +66,7 @@
       Apps.aria2_rpc_listen_all = "true";
       Apps.aria2_rpc_allow_origin_all = "true";
       Apps.aria2_follow_torrent = "true";
-      //Apps.aria2_curl = E('_aria2_curl').value;
+      Apps.aria2_rpc_secret = E('_aria2_rpc_secret').value;
       //Apps.aria2_ttl = E('_aria2_ttl').value;
       //Apps.aria2_enable_dht = E('_aria2_enable_dht').value;
       Apps.aria2_listen_port = E('_aria2_listen_port').value;
@@ -127,14 +127,14 @@
         }
         //dht_mode=[['true','是'],['false','否']];
         $('#aria2-fields').forms([
-          { title: '开启aria2', name: 'aria2_enable', type: 'checkbox', value: ((Apps.aria2_enable == '1') ? 1 : 0) },
+          { title: '开启aria2', name: 'aria2_enable', type: 'checkbox', value: ((Apps.aria2_enable == '1')? 1:0)},
           { title: 'Aria2版本', name: 'aria2_version', text: Apps.aria2_version || '1.29' },
           //{ title: '下载存储目录', name: 'aria2_dir', type: 'text', maxlen: 34, size: 34, value: Apps.aria2_dir ||"/mnt"},
           { title: '下载存储目录', name: 'aria2_dir',  type: 'select', options:dir_mode,value:Apps.aria2_dir},
           { title: 'RPC监听端口', name: 'aria2_rpc_listen_port', type: 'text', maxlen: 5, size: 5, value: Apps.aria2_rpc_listen_port || '6800' },
           { title: '启动延时', name: 'aria2_sleep', type: 'text', maxlen: 2, size: 2, value: Apps.aria2_sleep || '2', suffix: '秒钟' },
           { title: '同时进行任务数', name: 'aria2_max_concurrent_downloads', type: 'text', maxlen: 1, size: 1, value: Apps.aria2_max_concurrent_downloads || '3'},
-          { title: 'RPC访问密钥', name: 'aria2_rpc_secret', text: Apps.aria2_rpc_secret },
+          { title: 'RPC访问密钥', name: 'aria2_rpc_secret', type: 'text', maxlen: 30, size: 30, value: Apps.aria2_rpc_secret },
           { title: 'WEB控制台', name: 'aria2_curl', text: '<a style="font-size: 14px;" href="http://aria2.me/glutton/" target="_blank"><u>Glutton控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://aria2.me/yaaw/" target="_blank"><u>yaaw控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://aria2.me/webui-aria2/" target="_blank"><u>aria2-webui控制台</u></a>' },
           { title: 'BT设置' },
           //{ title: '开启DHT', name: 'aria2_enable_dht',  type: 'select', options:dht_mode,value:Apps.aria2_enable_dht},      
