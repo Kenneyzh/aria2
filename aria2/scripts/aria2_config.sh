@@ -11,8 +11,12 @@ if [ -z $dirpath ];then
 fi
 dbus set aria2_version=$version
 dbus set aria2_dir_str=$dirpath
+if [ -L "$KSROOT/init.d/S96aria2.sh" ]; then 
+	rm -rf $KSROOT/init.d/S96aria2.sh
+fi
 if [ "`dbus get aria2_enable`" == "1" ] && [ ! -z "`dbus get aria2_dir_str|grep mnt`" ];then
 	dbus set aria2_version="<font color=green>服务已开启</font>  ($version)"
+	ln -sf $KSROOT/aria2/aria2_run.sh $KSROOT/init.d/S96aria2.sh
 	sh $KSROOT/aria2/aria2_run.sh restart
 else
 	dbus set aria2_version="<font color=red>服务未开启</font>  ($version)"
