@@ -20,7 +20,7 @@
     //数据 -  绘制界面用 - 直接 声明一个 Apps 然后 post 到 sh 然后 由 sh 执行 存到 dbus
     function verifyFields(focused, quiet) {
       var id = 1 + Math.floor(Math.random() * 6);
-      var postData = { "id": id, "method": 'aria2_config.sh', "params": [], "fields": Apps };
+      var postData = { "id": id, "method": 'aria2_config.sh', "params": [1], "fields": Apps };
       var success = function (data) {
         //
         //$('#footer-msg').text(data.result);
@@ -135,7 +135,7 @@
           { title: '启动延时', name: 'aria2_sleep', type: 'text', maxlen: 2, size: 2, value: Apps.aria2_sleep || '2', suffix: '秒钟' },
           { title: '同时进行任务数', name: 'aria2_max_concurrent_downloads', type: 'text', maxlen: 1, size: 1, value: Apps.aria2_max_concurrent_downloads || '3'},
           { title: 'RPC访问密钥', name: 'aria2_rpc_secret', type: 'text', maxlen: 30, size: 30, value: Apps.aria2_rpc_secret },
-          { title: 'WEB控制台', name: 'aria2_curl', text: '<a style="font-size: 14px;" href="http://aria2.me/glutton/" target="_blank"><u>Glutton控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://aria2.me/yaaw/" target="_blank"><u>yaaw控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://aria2.me/webui-aria2/" target="_blank"><u>aria2-webui控制台</u></a>' },
+          { title: 'WEB控制台', name: 'aria2_curl', text: '<a style="font-size: 14px;" href="http://aria2.me/glutton/" target="_blank"><u>Glutton控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://aria2.me/yaaw/" target="_blank"><u>yaaw控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://www.nasdiy.net/aria2/" target="_blank"><u>aria2-webui控制台</u></a>' },
           { title: 'BT设置' },
           //{ title: '开启DHT', name: 'aria2_enable_dht',  type: 'select', options:dht_mode,value:Apps.aria2_enable_dht},      
           { title: 'BT监听端口', name: 'aria2_listen_port', type: 'text', maxlen: 5, size: 5, value: Apps.aria2_listen_port || '6888' },
