@@ -135,12 +135,12 @@
           { title: '启动延时', name: 'aria2_sleep', type: 'text', maxlen: 2, size: 2, value: Apps.aria2_sleep || '2', suffix: '秒钟' },
           { title: '同时进行任务数', name: 'aria2_max_concurrent_downloads', type: 'text', maxlen: 1, size: 1, value: Apps.aria2_max_concurrent_downloads || '3'},
           { title: 'RPC访问密钥', name: 'aria2_rpc_secret', type: 'text', maxlen: 32, size: 34, value: Apps.aria2_rpc_secret },
-          { title: 'WEB控制台', name: 'aria2_curl', text: '<a style="font-size: 14px;" href="http://www.nasdiy.net/AriaNg/" target="_blank"><u>AriaNg控制台</u></a> | <a style="font-size: 14px;" href="http://aria2.me/glutton/" target="_blank"><u>Glutton控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://www.nasdiy.net/yaaw/" target="_blank"><u>yaaw控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://www.nasdiy.net/aria2/" target="_blank"><u>aria2-webui控制台</u></a>' },
+          { title: 'WEB控制台', name: 'aria2_curl', text: '<a style="font-size: 14px;" href="http://www.nasdiy.net/AriaNg/" target="_blank"><u>AriaNg控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://www.nasdiy.net/yaaw/" target="_blank"><u>yaaw控制台</u></a> | <a style="font-size: 14px; "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;" href="http://www.nasdiy.net/aria2/" target="_blank"><u>aria2-webui控制台</u></a>' },
           { title: 'BT设置' },
           //{ title: '开启DHT', name: 'aria2_enable_dht',  type: 'select', options:dht_mode,value:Apps.aria2_enable_dht},      
           { title: 'BT监听端口', name: 'aria2_listen_port', type: 'text', maxlen: 5, size: 5, value: Apps.aria2_listen_port || '6888' },
           { title: '单个种子最大连接数', name: 'aria2_bt_max_peers', type: 'text', maxlen: 3, size: 3, value: Apps.aria2_bt_max_peers || '55' },
-          { title: '添加tracker', name: 'aria2_bt_tracker', type: 'text', maxlen: 500, size: 500, value: Apps.aria2_bt_tracker},
+          { title: '添加tracker', name: 'aria2_bt_tracker', type: 'text', maxlen: 500, size: 500, value: Apps.aria2_bt_tracker || 'udp://tracker1.wasabii.com.tw:6969/announce,udp://tracker2.wasabii.com.tw:6969/announce,http://mgtracker.org:6969/announce,http://tracker.mg64.net:6881/announce,http://share.camoe.cn:8080/announce,udp://tracker.opentrackr.org:1337/announce' },
 
           //{ title: 'TTL', name: 'aria2_ttl', type: 'text', maxlen: 5, size: 5, value: Apps.aria2_ttl || '600' ,suffix: ' <small> (范围: 1~86400; 默认: 600)</small>'},
         ]);
